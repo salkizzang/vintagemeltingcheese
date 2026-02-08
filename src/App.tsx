@@ -11,8 +11,7 @@ function App() {
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   // 인스타그램 주소 상수화
-  const INSTAGRAM_URL = "https://www.instagram.com/melting_cheese_official/";
-  const MOBILE_INSTAGRAM_URL = "instagram://user?username=melting_cheese_official"
+  const INSTAGRAM_URL = "https://www.instagram.com/melting_cheese_official?igsh=MWY0MWpoOHB5bHNkaw%3D%3D&utm_source=qr";
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleInstagramClick = (e : any) => {
@@ -22,7 +21,7 @@ function App() {
     const isMobile = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
 
     if (isMobile) {
-      window.location.href = MOBILE_INSTAGRAM_URL;
+      window.location.href = INSTAGRAM_URL;
     } else {
       window.open(INSTAGRAM_URL, '_blank');
     }
