@@ -5,20 +5,28 @@ import './index.css';
 import { WavyMarquee } from './components/WavyMarquee';
 
 function App() {
-  const marqueeText = "We'll make your day special ! · We love you !";
-  const wavyText =  "We'll make your day special ! · We love you !";
+  const marqueeText = "We'll make your day special ! 💞 We love you !";
+  const wavyText =  "We'll make your day special ! 💞 We love you !";
   const [menuOpen, setMenuOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [carouselIndex, setCarouselIndex] = useState(0);
+  const carouselImages = ['/c1.png', '/c2.png', '/c3.png', '/c4.png'];
 
   // 렌더링 될 때 한 번만 체크하면 충분합니다.
+  const isAndroid = /android/i.test(navigator.userAgent);
   const isMobile = /android|iphone|ipad|ipod/i.test(navigator.userAgent.toLowerCase());
-  
+
   // [핵심] 모바일이면 현재창(_self), PC면 새창(_blank)
   // 모바일에서 _self를 써야 브라우저가 자연스럽게 앱으로 전환해줍니다.
   const linkTarget = isMobile ? "_self" : "_blank";
 
-  // 인스타그램 주소 (순정 주소 사용)
-  const INSTAGRAM_URL = "https://www.instagram.com/melting_cheese_official";
+  // 인스타그램 주소
+  // 안드로이드: intent:// 스킴으로 프로필 페이지를 직접 열어줌
+  // iOS/PC: 일반 웹 URL 사용
+  const INSTAGRAM_WEB_URL = "https://www.instagram.com/melting_cheese_official";
+  const INSTAGRAM_URL = isAndroid
+    ? "intent://www.instagram.com/melting_cheese_official#Intent;scheme=https;package=com.instagram.android;end"
+    : INSTAGRAM_WEB_URL;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,6 +35,13 @@ function App() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCarouselIndex((prev) => (prev + 1) % carouselImages.length);
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [carouselImages.length]);
 
   return (
     <>
@@ -214,6 +229,17 @@ function App() {
               </div>
             </motion.article>
           ))}
+        </div>
+      </section>
+
+      {/* Image Carousel Section */}
+      <section className="carousel-section">
+        <div className="carousel-wrapper">
+          <img
+            src={carouselImages[carouselIndex]}
+            alt={`illustration ${carouselIndex + 1}`}
+            className="carousel-image"
+          />
         </div>
       </section>
 

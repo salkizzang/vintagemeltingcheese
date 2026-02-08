@@ -26,7 +26,7 @@ export function WavyMarquee({ text, className = '' }: WavyMarqueeProps) {
     return path;
   };
 
-  const repeatedText = `${text}   ✦   `.repeat(15);
+  const repeatedText = `${text}\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0✦\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0`.repeat(15);
 
   return (
     <div className={`wavy-marquee ${className}`}>

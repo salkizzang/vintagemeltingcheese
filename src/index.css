@@ -140,18 +140,20 @@ img {
   transition: background-color 0.3s ease;
 }
 
-.marquee-container:hover {
-  background-color: #b8dfc3;
+@media (hover: hover) {
+  .marquee-container:hover {
+    background-color: #b8dfc3;
+  }
+
+  .marquee-container:hover .marquee-track {
+    animation-play-state: paused;
+  }
 }
 
 .marquee-track {
   display: flex;
   width: fit-content;
   animation: marquee 40s linear infinite;
-}
-
-.marquee-container:hover .marquee-track {
-  animation-play-state: paused;
 }
 
 .marquee-content {
@@ -595,10 +597,34 @@ img {
   color: var(--color-brown);
 }
 
+/* Carousel Section */
+.carousel-section {
+  background-color: #ffe5fd;
+  /* padding: 60px 20px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-wrapper {
+  width: 200px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
 /* CTA Section */
 .cta {
   padding: var(--section-padding) 20px;
-  background-color: #f8ecf2;
+  background-color: #ffe5fd;
 }
 
 .cta-inner {
