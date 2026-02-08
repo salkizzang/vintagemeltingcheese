@@ -1,0 +1,28 @@
+.wavy-marquee {
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--color-cream);
+  padding: 10px 0;
+}
+
+.wavy-marquee.accent {
+  background-color: #cae9d3;
+}
+
+.wavy-marquee-svg {
+  width: 100%;
+  height: 80px;
+  display: block;
+}
+
+.wavy-marquee-text {
+  font-family: var(--font-main);
+  font-size: 32px;
+  fill: var(--color-brown-dark);
+  font-weight: 400;
+}
+
+.wavy-marquee.accent .wavy-marquee-text {
+  font-size: 36px;
+  font-weight: 700;
+}
