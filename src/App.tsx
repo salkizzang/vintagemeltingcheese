@@ -12,6 +12,7 @@ function App() {
 
   // 인스타그램 주소 상수화
   const INSTAGRAM_URL = "https://www.instagram.com/melting_cheese_official/";
+  const MOBILE_INSTAGRAM_URL = "instagram://user?username=melting_cheese_official"
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleInstagramClick = (e : any) => {
@@ -21,10 +22,8 @@ function App() {
     const isMobile = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
 
     if (isMobile) {
-      // 모바일: 현재 창에서 이동 (이렇게 해야 앱이 딥링크를 제대로 인식함)
-      window.location.href = INSTAGRAM_URL;
+      window.location.href = MOBILE_INSTAGRAM_URL;
     } else {
-      // PC: 새 탭으로 열기
       window.open(INSTAGRAM_URL, '_blank');
     }
   };

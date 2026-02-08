@@ -1,18 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Nanum+Gothic:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&display=swap');
-@import url('https://vendor-cdn.imweb.me/css/ChiayiCityFont.css');
-@import url('https://vendor-cdn.imweb.me/css/seoulnamsanm.css');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Playwrite+NZ+Basic:wght@100..400&display=swap');
 
-/* Chiayi City Font를 영문(Latin)에만 적용 */
-@font-face {
-  font-family: 'Chiayi City Font Latin';
-  src: url('https://vendor-cdn.imweb.me/fonts/subset/chiayicityfont/chiayicityfont.woff2') format('woff2'),
-       url('https://vendor-cdn.imweb.me/fonts/subset/chiayicityfont/chiayicityfont.woff') format('woff'),
-       url('https://vendor-cdn.imweb.me/fonts/subset/chiayicityfont/chiayicityfont.ttf') format('truetype');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-  unicode-range: U+0020-007F, U+00A0-00FF, U+2000-206F, U+2100-214F;
-}
 
 * {
   margin: 0;
@@ -32,8 +20,8 @@
   --color-text: #4A3F35;
   --color-text-light: #7A6F65;
 
-  /* Typography - 영문: Chiayi City Font, 한글: 맑은고딕 */
-  --font-main: 'Chiayi City Font Latin', 'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Nanum Gothic', sans-serif;
+  /* Typography - 영문: ..., 한글: 맑은고딕 */
+  --font-main:  'Playwrite NZ Basic', 'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Nanum Gothic', sans-serif;
 
   /* Spacing */
   --section-padding: clamp(60px, 10vw, 120px);
