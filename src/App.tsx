@@ -10,38 +10,15 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
-  const INSTAGRAM_ID = "melting_cheese_official";
-  const INSTAGRAM_WEB_URL = `https://www.instagram.com/${INSTAGRAM_ID}`;
+  // 렌더링 될 때 한 번만 체크하면 충분합니다.
+  const isMobile = /android|iphone|ipad|ipod/i.test(navigator.userAgent.toLowerCase());
+  
+  // [핵심] 모바일이면 현재창(_self), PC면 새창(_blank)
+  // 모바일에서 _self를 써야 브라우저가 자연스럽게 앱으로 전환해줍니다.
+  const linkTarget = isMobile ? "_self" : "_blank";
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleInstagramClick = (e : any) => {
-    e.preventDefault(); 
-    
-    const userAgent = navigator.userAgent.toLowerCase();
-    const isAndroid = /android/i.test(userAgent);
-    const isIOS = /iphone|ipad|ipod/i.test(userAgent);
-
-    if (isAndroid) {
-      // 안드로이드: 앱 스킴(instagram://)을 사용하여 강제로 프로필로 이동시킵니다.
-      // 이렇게 해야 앱이 켜져있어도 프로필 화면으로 전환됩니다.
-      const appUrl = `instagram://user?username=${INSTAGRAM_ID}`;
-      
-      // 앱 실행 시도
-      window.location.href = appUrl;
-
-      // 앱이 설치되어 있지 않은 경우를 대비해 0.5초 뒤 웹페이지로 이동 (앱이 뜨면 이 코드는 무시됨)
-      setTimeout(() => {
-        window.location.href = INSTAGRAM_WEB_URL;
-      }, 500);
-
-    } else if (isIOS) {
-      // iOS: 아이폰은 https 주소를 유니버설 링크로 잘 인식하므로 웹 주소 사용 (현재 창 이동)
-      window.location.href = INSTAGRAM_WEB_URL;
-    } else {
-      // PC: 새 탭으로 열기
-      window.open(INSTAGRAM_WEB_URL, '_blank');
-    }
-  };
+  // 인스타그램 주소 (순정 주소 사용)
+  const INSTAGRAM_URL = "https://www.instagram.com/melting_cheese_official";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -82,8 +59,8 @@ function App() {
 
       {/* Marquee */}
       <a
-        href={INSTAGRAM_WEB_URL}
-        onClick={handleInstagramClick}
+        href={INSTAGRAM_URL}
+        target={linkTarget}
         rel="noopener noreferrer"
         className="marquee-container"
         style={{ marginTop: '80px' }}
@@ -284,12 +261,14 @@ function App() {
         <div className="footer-bottom">
         <p>COMPANY: 멜팅치즈(Melting Cheese) | OWNER: Moa Choi</p>
         <p>E-MAIL min9030504@naver.com</p>
-        <a href={INSTAGRAM_WEB_URL}
-        onClick={handleInstagramClick}
+        <a href={INSTAGRAM_URL}
+         target={linkTarget}
          rel="noopener noreferrer" className="footer-instagram">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
           @melting_cheese_official
         </a>
+        <p>© 2023 Melting Cheese. All rights reserved.</p>
+
         </div>
       </footer>
 
