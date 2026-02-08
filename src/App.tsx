@@ -10,20 +10,36 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
-  // 인스타그램 주소 상수화
-  const INSTAGRAM_URL = "https://www.instagram.com/melting_cheese_official?igsh=MWY0MWpoOHB5bHNkaw%3D%3D&utm_source=qr";
+  const INSTAGRAM_ID = "melting_cheese_official";
+  const INSTAGRAM_WEB_URL = `https://www.instagram.com/${INSTAGRAM_ID}`;
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleInstagramClick = (e : any) => {
-    e.preventDefault(); // 기본 링크 이동 막기
+    e.preventDefault(); 
     
     const userAgent = navigator.userAgent.toLowerCase();
-    const isMobile = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
+    const isAndroid = /android/i.test(userAgent);
+    const isIOS = /iphone|ipad|ipod/i.test(userAgent);
 
-    if (isMobile) {
-      window.location.href = INSTAGRAM_URL;
+    if (isAndroid) {
+      // 안드로이드: 앱 스킴(instagram://)을 사용하여 강제로 프로필로 이동시킵니다.
+      // 이렇게 해야 앱이 켜져있어도 프로필 화면으로 전환됩니다.
+      const appUrl = `instagram://user?username=${INSTAGRAM_ID}`;
+      
+      // 앱 실행 시도
+      window.location.href = appUrl;
+
+      // 앱이 설치되어 있지 않은 경우를 대비해 0.5초 뒤 웹페이지로 이동 (앱이 뜨면 이 코드는 무시됨)
+      setTimeout(() => {
+        window.location.href = INSTAGRAM_WEB_URL;
+      }, 500);
+
+    } else if (isIOS) {
+      // iOS: 아이폰은 https 주소를 유니버설 링크로 잘 인식하므로 웹 주소 사용 (현재 창 이동)
+      window.location.href = INSTAGRAM_WEB_URL;
     } else {
-      window.open(INSTAGRAM_URL, '_blank');
+      // PC: 새 탭으로 열기
+      window.open(INSTAGRAM_WEB_URL, '_blank');
     }
   };
 
