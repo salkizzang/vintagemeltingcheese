@@ -1,0 +1,10 @@
+/* Hero Image Section */
+.hero-banner-section {
+  width: 100%;
+  overflow: hidden;
+}
+
+.hero-banner-image {
+  width: 100%;
+  display: block;
+}

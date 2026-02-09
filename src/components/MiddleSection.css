@@ -1,0 +1,10 @@
+/* Middle Image Section */
+.middle-section {
+  width: 100%;
+  overflow: hidden;
+}
+
+.middle-image {
+  width: 100%;
+  display: block;
+}
